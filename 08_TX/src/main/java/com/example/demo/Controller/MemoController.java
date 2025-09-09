@@ -63,10 +63,15 @@ public class MemoController {
         log.info("GET /memo/add...");
     }
     @PostMapping("/add")
-    public String add_memo_post(@Valid MemoDto dto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws Exception
-    {
+    public String add_memo_post(
+            @Valid MemoDto dto,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes
+    ) throws Exception {
         log.info("POST /memo/add..." + dto);
         //파라미터
+
         //입력값검증(데이터)
         log.info("유효성 오류 발생여부 : " + bindingResult.hasErrors());
         if(bindingResult.hasErrors()){
