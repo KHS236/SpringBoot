@@ -20,7 +20,8 @@ public class Lend {
     //Id 만들면서 자동증가로 번호 부여하기
     private Long id;
 
-    @ManyToOne //다대1 관계를 나타내는 어노테이션
+    //다대1 관계를 나타내는 어노테이션
+    @ManyToOne(fetch = FetchType.LAZY) //헷갈리거나 감이 안 오면 그냥 LAZY를 기본값으로
     @JoinColumn(
             name = "username", //표시할 외래키 컬럼명
             foreignKey =@ForeignKey(
@@ -32,7 +33,7 @@ public class Lend {
     )
     private User user;//유저엔티티에서 가져올 거야 (연결)
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
         name="bookCode",
         foreignKey = @ForeignKey(
