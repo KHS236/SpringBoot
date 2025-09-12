@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.Domain.Common.Mapper.MemoMapper">
+
+    <insert id="insertXML"><!--안에 세미콜론 쓰면 동작 안 함-->
+        insert into tbl_memo values(#{id},#{text},#{writer},#{createAt})
+    </insert>
+    <update id="updateXML">
+        update tbl_memo set text=#{text},writer=#{writer} where id=#{id}
+    </update>
+    <delete id="deleteXML">
+        delete from tbl_memo where id=#{id}
+    </delete>
+
+
+</mapper>
