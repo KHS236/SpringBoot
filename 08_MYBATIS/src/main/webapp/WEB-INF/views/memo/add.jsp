@@ -26,7 +26,7 @@
       </div>
       <div>
             <label>DATA_TEST :</label> <span> ${data_test} </span> <br/>
-            <input name="data_test"  placeHolder="yyyy#MM#dd 형식으로 날짜를 입력하세요" />
+            <input name="data_test"  placeHolder="yyyy#MM#dd 형식으로 날짜 입력하세요" />
       </div>
       <div>
             <button>메모추가</button>

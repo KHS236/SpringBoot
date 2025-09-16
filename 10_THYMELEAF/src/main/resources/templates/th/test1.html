@@ -1,0 +1,81 @@
+<!DOCTYPE html> <!-- thymeleaf.org 최근 타임리프 기술 적용을 위한 최신화-->
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!-- 헤더영역 가져오기-->
+<!--    <th:block th:insert="~{th/fragments/header::<-조각에 접근하는 기호headerFragment}">-->
+    <th:block th:insert="~{th/fragments/header::headerFragment}">
+
+    </th:block>
+
+    <main>
+        <h1> TEST 1 (/th/test1)</h1>
+
+        <h2>TH : 속성값 가져오기</h2>
+        <!--THYMELEAF 코드 기존html코드에 th:코드="${삽입}"-->
+        <!-- NAMESPACE 기술명을 구분하기 위한 어떤 것-->
+        NAME : <span th:text="${name}"> </span> <br/>
+        DTO  : <div th:text="${dto}"> </div> <br/>
+        DTO.ID  : <span th:text="${dto.id}"> </span> <br/>
+        DTO.TEXT  : <span th:text="${dto.text}"> </span> <br/>
+        DTO.WRITER  : <span th:text="${dto.writer}"> </span> <br/>
+        <hr/>
+        <h2>TH : 분기문</h2>
+        <!--컨트롤러에서 true로 넘겨줬고 true일경우 블럭 안 코드 실행-->
+        <th:block th:if="${isAuth}">
+            <div> 로그인 상태입니다. </div>
+        </th:block>
+        <!--false값으로 판단할 수도 있음-->
+        <th:block th:unless="${isAuth}">
+            <div> 로그아웃 상태입니다. </div>
+        </th:block>
+        <hr/>
+        <h2>TH : 반복문</h2>
+        <!-- th태그는 프론트엔드에 뭘 표시하진 않는다
+        백엔드 문법을 적용시키기 위한 블럭 반복문은 each="꺼내오는단위:${list}"
+        블럭 밖으로 나가면 리스트 사용 불가(지역변수개념)-->
+        <th:block th:each="dto:${list}">
+            <div th:text="${dto}"> </div> <br/>
+        </th:block>
+        <hr/>
+        <h2>TH : A TAG</h2>
+        <!--그전에 받은 백엔드 경로를 넣으려면 thymeleaf로
+        "경로기반 작업"을 하려면 @{} 사용!!! -->
+        <a th:href="@{/memo/param1(id=${dto.id},text=${dto.text},writer=${dto.writer})}">/MEMO/PARAM1</a> <br/>
+        <a th:href="@{/memo/param2/{id}/{text}/{writer}(id=${dto.id},text=${dto.text},writer=${dto.writer})   }">/MEMO/PARAM2</a> <br/>
+
+
+
+    <!--자바 스크립트에서 thymeleaf 사용하는법 (뷰랑 연결)-->
+        <script th:inline="javascript">
+            const name = [[${name}]]
+            console.log('name',name)
+
+            const dto = [[${dto}]]
+            console.log('dto',dto)
+
+            const list = [[${list}]]
+            console.log('list',list)
+
+
+        </script>
+    </main>
+
+    <!-- footer area 가져오기-->
+    <div th:insert="~{th/fragments/footer::footerFragment-1}"> </div>
+    <div th:replace="~{th/fragments/footer::footerFragment-2}"> </div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class MemoDto {
 
     private Long id;
+
     @NotBlank(message="TEXT는 필수 항목입니다.")
     private String text;
     @NotBlank(message="작성자를 입력하세요.")
@@ -23,5 +24,5 @@ public class MemoDto {
     private String writer;
 
 
-    private LocalDate data_test;
+    private LocalDateTime createAt;
 }

@@ -37,30 +37,18 @@ dependencies {
     //JSP EMBED TOMCAT
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:11.0.10'
 
-
-    //JSP EL PARSER
-    implementation 'jakarta.el:jakarta.el-api:6.0.1'
-
+    //JSTL
     implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
 
-    //VALIDATION
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-    //DATABASE
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    implementation 'org.apache.commons:commons-dbcp2:2.13.0'
-
-    //JPA
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    //MYBATIS
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
-
-
+    //THYMELEAF
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    //프론트앤드랑 백앤드를 나눌 생각이라면 타임리프 사용할 이유 X
+    //스프링부트 단독으로 FN/BN을 만들 예정일 경우 타임리프 사용하기
+    //개인프로젝트하기에 괜찮음
+    
+    //THYMELEAF설정은 application properties에서
 
 }
 

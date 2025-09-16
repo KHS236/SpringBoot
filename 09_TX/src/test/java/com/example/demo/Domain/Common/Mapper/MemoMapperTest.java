@@ -29,14 +29,14 @@ class MemoMapperTest {
 
     @Test
     public void t1 () {
-        MemoDto dto = new MemoDto(1L,"내용1","작성자1", LocalDateTime.now(),null);
+        MemoDto dto = new MemoDto(1L,"내용1","작성자1", LocalDateTime.now());
         memoMapper.insert(dto);
 
     }
 
     @Test
     public void t2() {
-        MemoDto dto = new MemoDto(1L,"내용1-UPDATE","작성자1-UPDATE", LocalDateTime.now(),null);
+        MemoDto dto = new MemoDto(1L,"내용1-UPDATE","작성자1-UPDATE", LocalDateTime.now());
         memoMapper.update(dto);
     }
 
@@ -47,7 +47,7 @@ class MemoMapperTest {
 
     @Test
     public void t4 () {
-        MemoDto dto = new MemoDto(null,"내용1","작성자1", LocalDateTime.now(),null);
+        MemoDto dto = new MemoDto(null,"내용1","작성자1", LocalDateTime.now());
         memoMapper.insert(dto);
         System.out.println(dto);
 
@@ -66,7 +66,7 @@ class MemoMapperTest {
     @Test
     public void t6 () {
         List<Map<String,Object>> list =
-        memoMapper.selectAllWithResultMap();
+                memoMapper.selectAllWithResultMap();
         list.forEach((map)->{
             System.out.println(map);
         });
@@ -75,14 +75,14 @@ class MemoMapperTest {
 
     @Test
     public void t7 () {
-        MemoDto dto = new MemoDto(2000L,"내용1","작성자1", LocalDateTime.now(),null);
+        MemoDto dto = new MemoDto(2000L,"내용1","작성자1", LocalDateTime.now());
         memoMapper.insert(dto);
     }
 
 
     @Test
     public void t8 () {
-        MemoDto dto = new MemoDto(2000L,"내용1-UPDATE","작성자1-UPDATE", LocalDateTime.now(),null);
+        MemoDto dto = new MemoDto(2000L,"내용1-UPDATE","작성자1-UPDATE", LocalDateTime.now());
         memoMapper.update(dto);
     }
 
