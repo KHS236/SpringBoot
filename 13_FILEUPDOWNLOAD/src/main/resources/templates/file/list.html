@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <Link rel="stylesheet" href="/resources/common.css">
+</head>
+<body>
+    <h1>/FILE/LIST PAGE</h1>
+    <th:block th:each="item:${fileList}">
+        <a th:href="@{/file/download(filename=${item})}" th:text="${item}"></a><br/>
+    </th:block>
+    <hr/>
+    <div class="test00">
+        <span>내용내용내용내용</span>
+    </div>
+</body>
+</html>
