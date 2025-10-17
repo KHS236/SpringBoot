@@ -1,9 +1,9 @@
 package com.example.demo.config.auth.loginHandler;
 
-import com.example.demo.config.auth.JWT.JWTProperties;
-import com.example.demo.config.auth.JWT.JWTTokenProvider;
-import com.example.demo.config.auth.JWT.TokenInfo;
 import com.example.demo.config.auth.PrincipalDetails;
+import com.example.demo.config.auth.jwt.JWTProperties;
+import com.example.demo.config.auth.jwt.JWTTokenProvider;
+import com.example.demo.config.auth.jwt.TokenInfo;
 import com.example.demo.domain.entity.JwtToken;
 import com.example.demo.domain.repository.JwtTokenRepository;
 import jakarta.servlet.ServletException;
@@ -36,33 +36,31 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
         //TOKEN 을 COOKIE로 전달
         TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
-//        Cookie cookie = new Cookie("token명",tokenInfo.getAccessToken());
         Cookie cookie = new Cookie(JWTProperties.ACCESS_TOKEN_COOKIE_NAME,tokenInfo.getAccessToken());
-        cookie.setMaxAge(JWTProperties.ACCESS_TOKEN_EXPIRATION_TIME);//accesstoken 유지시간
-        cookie.setPath("/");        //쿠키 적용경로(/ : 모든경로)
+        cookie.setMaxAge(JWTProperties.ACCESS_TOKEN_EXPIRATION_TIME);    //accesstoken 유지시간
+        cookie.setPath("/");    //쿠키 적용경로(/ : 모든경로)
         response.addCookie(cookie); //응답정보에 쿠키 포함
 
-        //TOKEN을 DB로 저장
-        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        //TOKEN 을 DB로 저장
+        PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
         String auth = principalDetails.getDto().getRole();
         JwtToken tokenEntity = JwtToken.builder()
-                        .accessToken(tokenInfo.getAccessToken())
-                        .refreshToken(tokenInfo.getRefreshToken())
-                        .username(authentication.getName())
-                        .auth(auth)
-                        .createAt(LocalDateTime.now())
-                        .build();
+                                    .accessToken(tokenInfo.getAccessToken())
+                                    .refreshToken(tokenInfo.getRefreshToken())
+                                    .username(authentication.getName())
+                                    .auth(auth)
+                                    .createAt(LocalDateTime.now())
+                                    .build();
         jwtTokenRepository.save(tokenEntity);
 
-                
-        log.info("CustomSuccessHandler's onAuthenticationSuccess invoke...genToken "+tokenInfo);
+
+        log.info("CustomSuccessHandler's onAuthenticationSuccess invoke...genToken.."+tokenInfo);
 
 
-        
+
+
         //Role 별로 redirect 경로 수정
-
         String redirectUrl = "/";
-
 //        for(GrantedAuthority authority : authentication.getAuthorities())
 //        {
 //            log.info("authority : " + authority);
@@ -83,7 +81,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 //            }
 //
 //        }
-//        response.sendRedirect(redirectUrl);
+        response.sendRedirect(redirectUrl);
 
     }
 }
